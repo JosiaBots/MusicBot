@@ -5,6 +5,7 @@ const app = express();
 const config = require("./scripts/config.json");
 const scripts = require("./scripts/modules.js");
 const http = require('http');
+const music = require("./scripts/bot.js");
 
 app.get("/", (request, response) => {
     console.log(Date.now() + " Ping Received");

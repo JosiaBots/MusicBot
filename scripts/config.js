@@ -39,7 +39,7 @@ export const config = bot.config.yargs(yargs)
 	})
 	.option('max-songs', {
 		type: 'number',
-		default: 5,
+		default: 10,
 		describe: 'Maximum songs a user may have in the queue.',
 		group: 'General:'
 	})
