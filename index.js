@@ -2,10 +2,9 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const express = require('express');
 const app = express();
-const config = require("./scripts/config.json");
-const scripts = require("./scripts/modules.js");
+const config = require("./scripts/music/config.json");
 const http = require('http');
-const music = require("./scripts/bot.js");
+const music = require("./scripts/music/music.js");
 
 app.get("/", (request, response) => {
     console.log(Date.now() + " Ping Received");
