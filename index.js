@@ -19,5 +19,4 @@ client.on("ready", () => {
     console.log('index Ready!');
 })
 
-    
 client.login(config.token);
