@@ -67,7 +67,7 @@ var commands = [
       }
     }
   },
-  {
+  /*{
     command: "queue",
     description: "Displays the current music queue",
     parameters:[],
@@ -80,6 +80,20 @@ var commands = [
         count++;
       }
       message.channel.send(queue);
+    }
+  },*/
+  {
+    command: "noinvite",
+    description: "Drake's tweet from when he didn't get invited to Josh's wedding altered",
+    parameters: ["word"],
+    execute: function(message, params){
+      var str = "True colors have come out today.\nMessage is loud and clear.Ties are\nofficially cut. I'll miss you brotha\n\nWhen you're not invited to\n" ;
+
+      for (i = 1; i < params.length; i++){
+        str += params[i] + " ";
+      }
+      str += " the message is clear...";
+      message.channel.send(str);
     }
   }
 ];
@@ -104,6 +118,42 @@ function play(connection, message){
   }
 }
 
+// Plays Everyday bro
+function playEverydayBro(connection, message){
+  var server = servers[message.guild.id];
+
+  server.dispatcher = connection.playStream(YTDL("https://www.youtube.com/watch?v=hSlb1ezRqfA", {filter:'audioonly'}));
+
+  server.dispatcher.on(end, function(){
+    connection.disconnect();
+  });
+}
+
+// Plays everydaybro 10 hours
+function playEverydayBro10(connection, message){
+  var server = servers[message.guild.id];
+
+  server.dispatcher = connection.playStream(YTDL("https://www.youtube.com/watch?v=vQs5qyQit7Y", {filter:'audioonly'}));
+
+  server.dispatcher.on(end, function(){
+    connection.disconnect();
+  });
+}
+
+bot.on('ready', () => {
+  bot.user.setGame('Type ' + PREFIX + 'help')
+});
+
+bot.on('message', (message) => {
+  var msg = message.content;
+  var pre = msg[0] + "" + msg[1];
+
+  if (pre == PREFIX){ // Check if a command has been executed
+    execute_command(message, msg.substring(2));
+  }
+});
+
+// Executes the command
 function execute_command(message, text){
   var params = text.split(" ");
 	var command = search_command(params[0]);
@@ -131,7 +181,7 @@ function search_command(command_name) {
 }
 
 
-client.on("ready", () => {
+bot.on("ready", () => {
     console.log('Music ready')
 })
 
