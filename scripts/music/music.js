@@ -13,25 +13,6 @@ var servers = {};
 // List of commands in json format
 var commands = [
   {
-    command: "help",
-    description: "",
-    parameters: [],
-    execute: function(message, params){
-      var list_of_commands = "To run a command use the prefix, " + PREFIX + " , and attach one of the commands below. For example, " + PREFIX + "ping\n\n";
-      var count = 1;
-      var com, des;
-      var commands_header = "__**Available commands**__\n\n"
-      list_of_commands += commands_header;
-      while (commands[count] != null){ // Goes through the list of commands
-        com = "__**" + commands[count].command + "**__";// Gets the command
-        des = commands[count].description;
-        list_of_commands += com + ": " + des + "\n"; //Append the command to the string
-        count++;
-      }
-      message.author.send(list_of_commands);// PMs the user the list of commands
-    }
-  },
-  {
     command: "play",
     description: "Plays the given youtube link",
     parameters:['yt_link'],
