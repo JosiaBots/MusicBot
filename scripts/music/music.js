@@ -10,7 +10,7 @@ var voiceChannel = null;
 var servers = {};
 
 // List of commands in json format
-var commands = [/*
+var commands = [
   {
     command: "help",
     description: "",
@@ -28,135 +28,6 @@ var commands = [/*
         count++;
       }
       message.author.send(list_of_commands);// PMs the user the list of commands
-    }
-  },*/
-  {
-    command: "ping",
-    description: "Responds with pong",
-    parameters: [],
-    execute: function(message, params){
-      message.channel.send('pong');
-    }
-  },
-  {
-    command:"roll",
-    description: "Rolls a dice",
-    parameters: [],
-    execute: function(message, params){
-      var roll =  Math.floor(Math.random() * 6) + 1;
-      message.reply("You rolled a " + roll);
-    }
-  },
-  {
-    command: "8ball",
-    description: "Ask the magic 8 ball a question",
-    parameters: [],
-    execute: function(message, params){
-      var rand =  Math.floor(Math.random() * NUM_ANS);
-      message.reply(m8ball[rand].reply);
-    }
-  },
-  {
-    command:"flip",
-    description: "Flips a coin",
-    parameters: [],
-    execute: function(message, params){
-      var flip =  Math.floor(Math.random() * 2) + 1;
-      if (flip == 1){
-        message.reply("Heads");
-      } else {
-        message.reply("Tails");
-      }
-    }
-  },
-  {
-    command:"kiss",
-    description: "Send a user a kiss",
-    parameters: ['user'],
-    execute: function(message, params){
-      var rand =  Math.floor(Math.random() * NUM_KISS);
-
-      embed.setImage(kiss[rand].link)
-
-      message.channel.send(params[1] + ", you got a kiss from " + message.member, {embed});
-    }
-  },
-  {
-    command:"hug",
-    description: "Send a user a hug",
-    parameters: ['user'],
-    execute: function(message, params){
-      var rand =  Math.floor(Math.random() * NUM_HUG);
-
-      embed.setImage(hug[rand].link)
-
-      message.channel.send(params[1] + ", " + message.member + " hugged you", {embed});
-    }
-  },
-  {
-    command:"cry",
-    description: "sad bois",
-    parameters: [],
-    execute: function(message, params){
-      var rand =  Math.floor(Math.random() * NUM_CRY);
-
-      embed.setImage(cry[rand].link)
-
-      message.channel.send("", {embed});
-    }
-  },
-  {
-    command: "pogchamp",
-    description: "pogchamp",
-    parameters:[],
-    execute: function (message, params){
-      embed.setImage('https://vignette3.wikia.nocookie.net/kancolle/images/2/21/PogChamp_Emote.png/revision/latest?cb=20160817151144');
-      message.channel.send("",{embed});
-    }
-  },
-  {
-    command: "anele",
-    description: "anele",
-    parameters:[],
-    execute: function (message, params){
-      embed.setImage('https://yt3.ggpht.com/-BcbQODNuf-Y/AAAAAAAAAAI/AAAAAAAAAAA/DMhDz6snMNc/s200-c-k-no-mo-rj-c0xffffff/photo.jpg');
-      message.channel.send("",{embed});
-    }
-  },
-  {
-    command: "1g",
-    description: "1g",
-    parameters:[],
-    execute: function (message, params){
-      embed.setImage('https://pbs.twimg.com/profile_images/692508045683904512/OU19Wmbe.png');
-      message.channel.send("",{embed});
-    }
-  },
-  {
-    command:"shitjwusays",
-    description: "Sends a random JWu 2k17 quote",
-    parameters:[],
-    execute: function(message, params){
-      var rand =  Math.floor(Math.random() * NUM_JWU_QUOTES);
-      message.channel.send(jwu_quotes[rand].quote);
-    }
-  },
-  {
-    command: "trivia",
-    description: "Useless trivia",
-    parameters:[],
-    execute: function(message, params){
-      var rand =  Math.floor(Math.random() * NUM_TRIVIA);
-      message.channel.send(trivia[rand].facts);
-    }
-  },
-  {
-    command:"pubgstrats",
-    description: "Tells you which strat to run on your next pubg game",
-    parameters:[],
-    execute: function(message, params){
-      var rand =  Math.floor(Math.random() * NUM_STRATS);
-      message.channel.send(pubgstrats[rand].strat);
     }
   },
   {
@@ -178,8 +49,8 @@ var commands = [/*
     }
   },
   {
-    command: "team10hours",
-    description: "Everyday Bro 10 hours",
+    command: "despacito2",
+    description: "Not clear?",
     parameters:[],
     execute: function(message, params){
       var voiceChannel;
@@ -189,7 +60,7 @@ var commands = [/*
       } else {
         voiceChannel = message.member.voiceChannel; // Find the voice channel that the message was entered from
         voiceChannel.join().then(function(connection){ // Bot joins the voice channel
-          playEverydayBro10(connection, message);
+         playdespacito(connection, message);
         });
       }
 
@@ -302,7 +173,7 @@ var commands = [/*
       }
     }
   },
-  /*{
+  {
     command: "queue",
     description: "Displays the current music queue",
     parameters:[],
@@ -316,7 +187,7 @@ var commands = [/*
       }
       message.channel.send(queue);
     }
-  },*/
+  },
   {
     command: "noinvite",
     description: "Drake's tweet from when he didn't get invited to Josh's wedding altered",
@@ -364,11 +235,11 @@ function playEverydayBro(connection, message){
   });
 }
 
-// Plays everydaybro 10 hours
-function playEverydayBro10(connection, message){
+// Plays despacito2 hours
+function playdespacito(connection, message){
   var server = servers[message.guild.id];
 
-  server.dispatcher = connection.playStream(YTDL("https://www.youtube.com/watch?v=vQs5qyQit7Y", {filter:'audioonly'}));
+  server.dispatcher = connection.playStream(YTDL("https://www.youtube.com/watch?v=W3GrSMYbkBE", {filter:'audioonly'}));
 
   server.dispatcher.on(end, function(){
     connection.disconnect();
@@ -416,104 +287,3 @@ function search_command(command_name) {
 }
 
 bot.login(config.token);
-
-// Definitions
-
-const NUM_JWU_QUOTES = 9;
-// JSON for JWU quotes
-var jwu_quotes = [
-  {"quote": "You're a bot" },
-  {"quote": "I need to go make salad" },
-  {"quote": "Wanna play old school Runescape?" },
-  {"quote": "IBuyPower got unbanned" },
-  {"quote": "I got banned for botting in Runescape" },
-  {"quote": "New year new me" },
-  {"quote": "If you die in the first 10 seconds I'm not playing anymore" },
-  {"quote": "I have to wake up at 6 A.M." },
-  {"quote": "Reuben's not toxic" }
-];
-
-const NUM_STRATS = 6;
-// Pubg Strats
-var pubgstrats = [
-  {strat: "Drop Big Box"},
-  {strat: "Drop Titties"},
-  {strat: "AFK Strat"},
-  {strat: "Spawn Island"},
-  {strat: "Land away from ZICO and get flamed"},
-  {strat: "Don't pick up anything less than a 4x scope. You can just hold shift"}
-];
-
-const NUM_KISS = 8;
-// Kiss Gifs
-var kiss = [
-  {link:'https://media0.giphy.com/media/l0Eryp2ZPdCmeMIb6/giphy.gif'},
-  {link:'https://media2.giphy.com/media/3o72FiXBdWRy3aZHJm/giphy.gif'},
-  {link:'https://media1.giphy.com/media/10UUe8ZsLnaqwo/giphy.gif'},
-  {link:'https://media.giphy.com/media/G3va31oEEnIkM/giphy.gif'},
-  {link:'https://media2.giphy.com/media/CdFWnuCgiMPte/giphy.gif'},
-  {link:'https://media2.giphy.com/media/qvwnbNRNoa04U/giphy.gif'},
-  {link:'https://media2.giphy.com/media/Jao0tQ4cns17W/giphy.gif'},
-  {link:'https://media2.giphy.com/media/3oriNVc5SDHOsWcCM8/giphy.gif'}
-];
-
-const NUM_HUG = 7;
-// Hug Gifs
-var hug = [
-  {link:'https://media2.giphy.com/media/mmPgxbuPiwCQg/giphy.gif'},
-  {link:'https://media0.giphy.com/media/8tpiC1JAYVMFq/giphy.gif'},
-  {link:'https://media1.giphy.com/media/X4pI9XchDNsu4/giphy.gif'},
-  {link:'https://media0.giphy.com/media/OiKAQbQEQItxK/giphy.gif'},
-  {link:'https://media3.giphy.com/media/LSOCIyd7LRjRS/giphy.gif'},
-  {link:'https://media2.giphy.com/media/lXiRKBj0SAA0EWvbG/giphy.gif'},
-  {link:'https://media1.giphy.com/media/X4pI9XchDNsu4/giphy.gif'}
-];
-
-const NUM_CRY = 6;
-// cry Gifs
-var cry = [
-  {link:'https://media0.giphy.com/media/Xs4TtKRfCTE9G/giphy.gif'},
-  {link:'https://media1.giphy.com/media/26FPImXfDlv4AFbBC/giphy.gif'},
-  {link:'https://media1.giphy.com/media/2Z5sMN0DSuAP6/giphy.gif'},
-  {link:'https://media0.giphy.com/media/4NuAILyDbmD16/giphy.gif'},
-  {link:'https://media1.giphy.com/media/tSVJrUNa15oA0/giphy.gif'},
-  {link:'https://media2.giphy.com/media/KsUNeuivwZTmo/giphy.gif'}
-];
-
-const NUM_TRIVIA = 8;
-// trivia
-var trivia = [
-  {facts:'In Africa, every 60 seconds a minute passes.'},
-  {facts:'Reindeer like to eat bananas.'},
-  {facts:'One quarter of the bones in your body are in your feet.'},
-  {facts:'All polar bears are left-handed.'},
-  {facts:"A pig's orgasm lasts for 30 minutes."},
-  {facts:'A pregnant goldfish is called a twit.'},
-  {facts:'England is my city.'},
-  {facts:"Josh didn't invite Drake to his wedding."}
-];
-
-const NUM_ANS = 20;
-// 8ball
-var m8ball = [
-  {reply:'It is certain'},
-  {reply:'It is decidedly so'},
-  {reply:'Without a doubt'},
-  {reply:'Yes definitely'},
-  {reply:'You may rely on it'},
-  {reply:'As I see it, yes'},
-  {reply:'Most likely'},
-  {reply:'Outlook good'},
-  {reply:'Yes'},
-  {reply:'Signs point to yes'},
-  {reply:'Reply hazy, try again'},
-  {reply:'Ask again later'},
-  {reply:'Better not tell you now'},
-  {reply:'Cannot predict now'},
-  {reply:'Concentrate and ask again'},
-  {reply:"Don't count on it"},
-  {reply:'My reply is no'},
-  {reply:'My sources say no'},
-  {reply:'Outlook not so good'},
-  {reply:'Very doubtful'}
-];
