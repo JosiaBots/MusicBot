@@ -6,6 +6,8 @@ https://discordapp.com/api/oauth2/authorize?client_id=472006806475112448&permiss
 
 Prefix = '//'
 
+Bot can only be used with youtube links = //play "Full Youtube Link"
+
 -------------
 
 You can also host the bot yourself by downloading this and changing the token in the config 
