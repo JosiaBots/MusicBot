@@ -10,7 +10,9 @@ You can also host the bot yourself by downloading this and changing the token in
 at (./scripts/music/config.json) don't forget to remove the .Example from the file!
 
 (You have to have node to run this)
+
 Run in CMD = npm i  (To install dependencies)
+
 Run in CMD = node index (To start the bot)
 
 --------------
