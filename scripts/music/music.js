@@ -67,58 +67,6 @@ var commands = [
     }
   },
   {
-    command: "time",
-    description: "Returns the time",
-    parameters:[],
-    execute: function(message, params){
-      var d = new Date();
-      var hours;
-      var minutes = d.getUTCMinutes();
-      var t;
-
-      if (d.getUTCHours() == 0){
-        hours = 12;
-      } if (d.getUTCHours() <= 6){
-        hours = (d.getUTCHours() % 12);
-      } else {
-        hours = (d.getUTCHours() % 12);
-      }
-      hours -= 6;
-
-      if (hours < 0){
-        hours += 12;
-      } else if (hours == 0){
-        hours = 12;
-      }
-
-      if (minutes < 10){
-        minutes = "0" + minutes;
-      }
-
-      if (d.getUTCHours() >= 6 && d.getUTCHours() < 18){
-        t = "A.M.";
-      } else {
-        t = "P.M.";
-      }
-
-      message.channel.send("It's only " + hours + ":" + minutes + " " + t);
-    }
-  },
-  {
-    command: "echo",
-    description: "Repeats the user",
-    parameters:['text'],
-    execute: function (message, params){
-      var text = "";
-      count = 1;
-      while(params[count]){
-        text += params[count] + " ";
-        count++;
-      }
-      message.channel.send(text);
-    }
-  },
-  {
     command: "play",
     description: "Plays the given youtube link",
     parameters:['yt_link'],
