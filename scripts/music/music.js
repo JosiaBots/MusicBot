@@ -104,4 +104,8 @@ function play(connection, message){
   }
 }
 
+client.on("ready", () => {
+    console.log('Music ready')
+})
+
 bot.login(config.token);
