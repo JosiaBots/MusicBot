@@ -47,8 +47,6 @@ Temporary Items
 .apdisk
 
 config.json
-config.js
-tokens.json
 node_modules/
 .env
 shrinkwrap.yaml
