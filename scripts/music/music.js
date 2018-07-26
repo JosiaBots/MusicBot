@@ -104,6 +104,33 @@ function play(connection, message){
   }
 }
 
+function execute_command(message, text){
+  var params = text.split(" ");
+	var command = search_command(params[0]);
+
+	if(command) {
+		if(params.length - 1 < command.parameters.length) {
+			message.reply("Insufficient parameters!");
+		} else {
+			command.execute(message, params);
+		}
+	} else{
+    message.reply("Invalid command!");
+  }
+}
+
+// Traverses the commands and tries to find the command specified by the user
+function search_command(command_name) {
+	for(var i = 0; i < commands.length; i++) {
+		if(commands[i].command == command_name.toLowerCase()) {
+			return commands[i];
+		}
+	}
+
+	return false;
+}
+
+
 client.on("ready", () => {
     console.log('Music ready')
 })
