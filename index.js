@@ -16,7 +16,7 @@ app.get("/", (request, response) => {
       }, 280000);
 
 client.on("ready", () => {
-    console.log('index ready');
+    console.log('index Ready!');
 })
 
     

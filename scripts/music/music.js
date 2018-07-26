@@ -9,6 +9,10 @@ const PREFIX = '//'; // Command Prefix
 var voiceChannel = null;
 var servers = {};
 
+bot.on("ready", () => {
+  console.log('Music Bot Ready!')
+})
+
 // List of commands in json format
 var commands = [
   {
